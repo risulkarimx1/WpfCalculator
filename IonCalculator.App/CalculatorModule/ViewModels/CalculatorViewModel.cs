@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Windows;
 using CalculatorModule.Helper;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -35,6 +36,7 @@ namespace CalculatorModule.ViewModels
 
         private void OnPressed(string input)
         {
+
             if (_clearDisplay)
             {
                 DisplayText = String.Empty;
@@ -44,6 +46,22 @@ namespace CalculatorModule.ViewModels
             if (input == "Reset")
             {
                 _stackHelper.ClearStack();
+            }
+
+            if (string.IsNullOrWhiteSpace(DisplayText) == false)
+            {
+                if (input == "+/-")
+                {
+                    var firstChar = DisplayText[0];
+                    if (firstChar == '-')
+                    {
+                        DisplayText = DisplayText.Substring(1, DisplayText.Length - 1);
+                    }
+                    else
+                    {
+                        DisplayText = "-" + DisplayText;
+                    }
+                }
             }
 
             if (Regex.IsMatch(input, @"^\d+$") || input == ".")

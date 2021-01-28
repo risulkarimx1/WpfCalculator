@@ -5,8 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-            
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:helper="clr-namespace:CalculatorModule.Helper"
              prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,7 +31,11 @@
         </Grid.RowDefinitions>
         <TextBox HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" MinHeight="20" MinWidth="400" Margin="5"
                  Text="{Binding DisplayText}" 
-                 TextAlignment="Right"/>
+                 TextAlignment="Right">
+            <b:Interaction.Behaviors>
+                <helper:OnlyNumberInTextBoxBehavior RegularExpression="^[0-9.\-]+$" MaxLength="50" />
+            </b:Interaction.Behaviors>
+        </TextBox>
         <TextBlock Grid.Row="1" Grid.Column="6" Text="{Binding CurrentOperator}"/>
         <!-- column 1 -->
         <Button Grid.Row="2" Grid.Column="1" Content="Reset" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="Reset" />
@@ -47,7 +52,7 @@
         <Button Grid.Row="2" Grid.Column="3" Content="8" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="8" />
         <Button Grid.Row="3" Grid.Column="3" Content="5" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="5" />
         <Button Grid.Row="4" Grid.Column="3" Content="2" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="2" />
-        <Button Grid.Row="5" Grid.Column="3" Content="+/-" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="+-" />
+        <Button Grid.Row="5" Grid.Column="3" Content="+/-" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="+/-" />
 
         <!-- column 4 -->
         <Button Grid.Row="2" Grid.Column="4" Content="9" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="9" />
