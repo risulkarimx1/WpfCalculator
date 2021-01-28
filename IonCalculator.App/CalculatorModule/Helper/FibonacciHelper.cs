@@ -8,8 +8,9 @@ namespace CalculatorModule.Helper
     {
         public static async Task<string> GetFibonacci(string number)
         {
-
-            await Task.Delay(5000);
+            // TODO: Should use Progress <int> here
+            
+            await Task.Delay(TimeSpan.FromMilliseconds(500));
 
             double value;
             double.TryParse(number, out value);

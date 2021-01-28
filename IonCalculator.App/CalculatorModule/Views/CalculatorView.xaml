@@ -44,7 +44,8 @@
         <!-- column 1 -->
         <Button Grid.Row="3" Grid.Column="1" Content="Reset" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="Reset" />
         <Button Grid.Row="4" Grid.Column="1" Content="Fib" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="Fib"/>
-        <Button Grid.Row="5" Grid.Column="1" Content="=" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="="/>
+        <!-- Need to calculate the stack for this sign -->
+        <!-- <Button Grid.Row="5" Grid.Column="1" Content="=" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="="/> -->
         
         <!-- column 2 -->
         <Button Grid.Row="3" Grid.Column="2" Content="7" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="7" />

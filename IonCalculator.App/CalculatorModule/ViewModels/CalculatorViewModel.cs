@@ -1,7 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CalculatorModule.Helper;
-using Microsoft.VisualBasic;
 using Prism.Commands;
 using Prism.Mvvm;
 using static System.String;
@@ -59,7 +59,7 @@ namespace CalculatorModule.ViewModels
                 if (input == "Fib")
                 {
                     ProgressValue = 0;
-                    var progressTask = ProgressFillTask();
+                    var progressTask = SleepTask();
                     var fibTask = FibonacciHelper.GetFibonacci(DisplayText);
                     await Task.WhenAll(fibTask, progressTask);
                     DisplayText = fibTask.Result;
@@ -68,6 +68,7 @@ namespace CalculatorModule.ViewModels
                     return;
                 }
                 
+                // Has Error in calculation
                 if (input == "+/-")
                 {
                     var firstChar = DisplayText[0];
@@ -103,14 +104,6 @@ namespace CalculatorModule.ViewModels
                     _clearDisplay = true;
                 }
             }
-            
-            else if(input == "=")
-            {
-                // var processedData = _stackHelper.ProcessStack();
-                // DisplayText = processedData;
-                // _clearDisplay = true;
-                // _stackHelper.ClearStack();
-            }
         }
 
         private void ResetDisplay()
@@ -119,12 +112,12 @@ namespace CalculatorModule.ViewModels
             _stackHelper.ClearStack();
         }
 
-        private async Task ProgressFillTask()
+        private async Task SleepTask()
         {
             for (int i = 0; i < 500; i++)
             {
                 ProgressValue += 10;
-                await Task.Delay(1);
+                await Task.Delay(TimeSpan.FromMilliseconds(1));
             }
         }
     }
