@@ -1,9 +1,10 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Windows;
+﻿using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using CalculatorModule.Helper;
+using Microsoft.VisualBasic;
 using Prism.Commands;
 using Prism.Mvvm;
+using static System.String;
 
 namespace CalculatorModule.ViewModels
 {
@@ -14,7 +15,13 @@ namespace CalculatorModule.ViewModels
         public DelegateCommand<string> OnButtonPressed { get; set; }
         private bool _clearDisplay = false;
         private string _currentOperator;
+        private int _progressValue;
 
+        public int ProgressValue
+        {
+            get => _progressValue;
+            set => SetProperty(ref _progressValue , value);
+        }
 
         public string CurrentOperator
         {
@@ -34,22 +41,33 @@ namespace CalculatorModule.ViewModels
             set => SetProperty(ref _displayText, value);
         }
 
-        private void OnPressed(string input)
+        private async void OnPressed(string input)
         {
-
             if (_clearDisplay)
             {
-                DisplayText = String.Empty;
+                DisplayText = Empty;
                 _clearDisplay = false;
             }
             
             if (input == "Reset")
             {
-                _stackHelper.ClearStack();
+                ResetDisplay();
             }
 
-            if (string.IsNullOrWhiteSpace(DisplayText) == false)
+            if (IsNullOrWhiteSpace(DisplayText) == false)
             {
+                if (input == "Fib")
+                {
+                    ProgressValue = 0;
+                    var progressTask = ProgressFillTask();
+                    var fibTask = FibonacciHelper.GetFibonacci(DisplayText);
+                    await Task.WhenAll(fibTask, progressTask);
+                    DisplayText = fibTask.Result;
+                    _stackHelper.ClearStack();
+                    _clearDisplay = true;
+                    return;
+                }
+                
                 if (input == "+/-")
                 {
                     var firstChar = DisplayText[0];
@@ -92,6 +110,21 @@ namespace CalculatorModule.ViewModels
                 // DisplayText = processedData;
                 // _clearDisplay = true;
                 // _stackHelper.ClearStack();
+            }
+        }
+
+        private void ResetDisplay()
+        {
+            DisplayText = Empty;
+            _stackHelper.ClearStack();
+        }
+
+        private async Task ProgressFillTask()
+        {
+            for (int i = 0; i < 500; i++)
+            {
+                ProgressValue += 10;
+                await Task.Delay(1);
             }
         }
     }

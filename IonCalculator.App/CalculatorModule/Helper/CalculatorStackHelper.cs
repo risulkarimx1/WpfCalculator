@@ -105,14 +105,5 @@ namespace CalculatorModule.Helper
             if (input == "+" || input == "-" || input == "/" || input == "*") return true;
             return false;
         }
-
-        private void PrintStack()
-        {
-            Console.WriteLine("======================");
-            foreach (var val in _calculatorStack)
-            {
-                MessageBox.Show(val);
-            }
-        }
     }
 }

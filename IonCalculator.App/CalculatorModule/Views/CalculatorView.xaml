@@ -27,44 +27,48 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+        
         <TextBox HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" MinHeight="20" MinWidth="400" Margin="5"
                  Text="{Binding DisplayText}" 
                  TextAlignment="Right">
             <b:Interaction.Behaviors>
-                <helper:OnlyNumberInTextBoxBehavior RegularExpression="^[0-9.\-]+$" MaxLength="50" />
+                <helper:DigitalTextBoxBehavior RegularExpression="^[0-9.\-]+$" MaxLength="50" />
             </b:Interaction.Behaviors>
         </TextBox>
         <TextBlock Grid.Row="1" Grid.Column="6" Text="{Binding CurrentOperator}"/>
+        <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" MinHeight="12" Minimum="1" Maximum="5000" Value="{Binding ProgressValue}"/>
+
         <!-- column 1 -->
-        <Button Grid.Row="2" Grid.Column="1" Content="Reset" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="Reset" />
-        <Button Grid.Row="3" Grid.Column="1" Content="Fib" Margin="5" MinHeight="20"/>
-        <Button Grid.Row="4" Grid.Column="1" Content="=" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="="/>
+        <Button Grid.Row="3" Grid.Column="1" Content="Reset" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="Reset" />
+        <Button Grid.Row="4" Grid.Column="1" Content="Fib" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="Fib"/>
+        <Button Grid.Row="5" Grid.Column="1" Content="=" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="="/>
         
         <!-- column 2 -->
-        <Button Grid.Row="2" Grid.Column="2" Content="7" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="7" />
-        <Button Grid.Row="3" Grid.Column="2" Content="4" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="4" />
-        <Button Grid.Row="4" Grid.Column="2" Content="1" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="1" />
-        <Button Grid.Row="5" Grid.Column="2" Content="0" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="0" />
+        <Button Grid.Row="3" Grid.Column="2" Content="7" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="7" />
+        <Button Grid.Row="4" Grid.Column="2" Content="4" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="4" />
+        <Button Grid.Row="5" Grid.Column="2" Content="1" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="1" />
+        <Button Grid.Row="6" Grid.Column="2" Content="0" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="0" />
 
         <!-- column 3 -->
-        <Button Grid.Row="2" Grid.Column="3" Content="8" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="8" />
-        <Button Grid.Row="3" Grid.Column="3" Content="5" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="5" />
-        <Button Grid.Row="4" Grid.Column="3" Content="2" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="2" />
-        <Button Grid.Row="5" Grid.Column="3" Content="+/-" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="+/-" />
+        <Button Grid.Row="3" Grid.Column="3" Content="8" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="8" />
+        <Button Grid.Row="4" Grid.Column="3" Content="5" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="5" />
+        <Button Grid.Row="5" Grid.Column="3" Content="2" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="2" />
+        <Button Grid.Row="6" Grid.Column="3" Content="+/-" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="+/-" />
 
         <!-- column 4 -->
-        <Button Grid.Row="2" Grid.Column="4" Content="9" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="9" />
-        <Button Grid.Row="3" Grid.Column="4" Content="6" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="6" />
-        <Button Grid.Row="4" Grid.Column="4" Content="3" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="3" />
-        <Button Grid.Row="5" Grid.Column="4" Content="." Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="." />
+        <Button Grid.Row="3" Grid.Column="4" Content="9" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="9" />
+        <Button Grid.Row="4" Grid.Column="4" Content="6" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="6" />
+        <Button Grid.Row="5" Grid.Column="4" Content="3" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="3" />
+        <Button Grid.Row="6" Grid.Column="4" Content="." Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="." />
 
         <!-- Column 5 -->
-        <Button Grid.Row="2" Grid.Column="5" Content="/" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="/" />
-        <Button Grid.Row="3" Grid.Column="5" Content="*" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="*" />
-        <Button Grid.Row="4" Grid.Column="5" Content="-" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="-" />
-        <Button Grid.Row="5" Grid.Column="5" Content="+" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="+" />
+        <Button Grid.Row="3" Grid.Column="5" Content="/" Margin="5" MinHeight="20" MinWidth="20" Command="{Binding OnButtonPressed}" CommandParameter="/" />
+        <Button Grid.Row="4" Grid.Column="5" Content="*" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="*" />
+        <Button Grid.Row="5" Grid.Column="5" Content="-" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="-" />
+        <Button Grid.Row="6" Grid.Column="5" Content="+" Margin="5" MinHeight="20" Command="{Binding OnButtonPressed}" CommandParameter="+" />
 
     </Grid>
 </UserControl>

@@ -7,10 +7,10 @@ using Microsoft.Xaml.Behaviors;
 
 namespace CalculatorModule.Helper
 {
-    public class OnlyNumberInTextBoxBehavior: Behavior<TextBox>
+    public class DigitalTextBoxBehavior: Behavior<TextBox>
     {
         public static readonly DependencyProperty RegularExpressionProperty =
-            DependencyProperty.Register("RegularExpression", typeof(string), typeof(OnlyNumberInTextBoxBehavior),
+            DependencyProperty.Register("RegularExpression", typeof(string), typeof(DigitalTextBoxBehavior),
             new FrameworkPropertyMetadata(".*"));
         public string RegularExpression
         {
@@ -25,7 +25,7 @@ namespace CalculatorModule.Helper
         }
 
         public static readonly DependencyProperty MaxLengthProperty =
-            DependencyProperty.Register("MaxLength", typeof(int), typeof(OnlyNumberInTextBoxBehavior),
+            DependencyProperty.Register("MaxLength", typeof(int), typeof(DigitalTextBoxBehavior),
             new FrameworkPropertyMetadata(int.MinValue));
         public int MaxLength
         {
